@@ -26,9 +26,10 @@ class OAICompatProvider(EmbeddingProvider):
         )
         results = response.data[0].embedding
         return results
-    
+
     def get_vector_name(self) -> str:
-        return f"oai_compat-{self.model_name}"
+        model_name = self.model_name.split("/")[-1].lower()
+        return f"fast-{model_name}"
 
     def get_vector_size(self) -> int:
         return self._vec_size
